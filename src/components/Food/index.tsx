@@ -15,9 +15,9 @@ interface FoodProps{
     },
     handleEditFood(food: {}):[],
 
-    toggleAvailable: () => {
-      isAvailable: boolean
-    }
+    handleDelete(food: {}): [],
+  
+
 }
 
 class Food extends Component<FoodProps> {
