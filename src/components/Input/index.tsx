@@ -11,9 +11,9 @@ import { Container } from './styles';
 
 interface InputProps {
   name: string,
-  icon: React.ElementType<{size: number}>,
-  value: string,
-
+  icon?: React.ElementType<{size: number}>,
+  value?: string,
+  placeholder: string
 }
 
 const Input = ({ name, icon: Icon, ...rest }:InputProps) =>{

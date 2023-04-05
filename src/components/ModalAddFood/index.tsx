@@ -4,26 +4,39 @@ import { FiCheckSquare } from 'react-icons/fi';
 import { Form } from './styles';
 import Modal from '../Modal';
 import Input from '../Input';
+import { FormHandles } from '@unform/core';
 
 interface ModalAddFoodProps {
-  formRef: string,
   setIsOpen: () => void,
-  handleAddFood: ( 
-    data: {
+  
+  handleAddFood: (data: {
+    image: string,
     name: string,
-    description: string,
     price: number,
-  }) => void
+    description: string
+  }) => void,
+
+  isOpen: boolean,
+
+  data: {
+    image: string,
+    name: string,
+    price: number,
+    description: string
+  }
 }
 
 class ModalAddFood extends Component <ModalAddFoodProps> {
+  
+  formRef: React.Ref<FormHandles>;
+
   constructor(props: ModalAddFoodProps) {
     super(props);
 
     this.formRef = createRef();
   }
 
-  handleSubmit = async data => {
+  handleSubmit = async (data: ModalAddFoodProps["data"]) => {
     const { setIsOpen, handleAddFood } = this.props;
 
     handleAddFood(data);

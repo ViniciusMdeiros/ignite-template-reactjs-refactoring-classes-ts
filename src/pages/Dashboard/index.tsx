@@ -7,8 +7,24 @@ import ModalAddFood from '../../components/ModalAddFood';
 import ModalEditFood from '../../components/ModalEditFood';
 import { FoodsContainer } from './styles';
 
-class Dashboard extends Component {
-  constructor(props) {
+interface DashboardProps {
+  food: {
+    id: number,
+    name: string,
+    description: string,
+    price: number,
+    available: boolean,
+    image: string,
+  },
+}
+
+class Dashboard extends Component <DashboardProps, {
+  foods: []|[response: AxiosResponse<any>],
+  editingFood: {},
+  modalOpen: boolean,
+  editModalOpen: boolean,}> {
+
+  constructor(props:DashboardProps) {
     super(props);
     this.state = {
       foods: [],
@@ -24,7 +40,7 @@ class Dashboard extends Component {
     this.setState({ foods: response.data });
   }
 
-  handleAddFood = async food => {
+  handleAddFood = async (food: DashboardProps["food"]) => {
     const { foods } = this.state;
 
     try {
@@ -33,13 +49,15 @@ class Dashboard extends Component {
         available: true,
       });
 
-      this.setState({ foods: [...foods, response.data] });
+      //## PAREI AQUI 
+
+     this.setState({ foods: [...foods, response.data] });
     } catch (err) {
       console.log(err);
     }
   }
 
-  handleUpdateFood = async food => {
+  handleUpdateFood = async (food: DashboardProps["food"]) => {
     const { foods, editingFood } = this.state;
 
     try {
