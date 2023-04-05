@@ -5,8 +5,19 @@ import { Form } from './styles';
 import Modal from '../Modal';
 import Input from '../Input';
 
-class ModalAddFood extends Component {
-  constructor(props) {
+interface ModalAddFoodProps {
+  formRef: string,
+  setIsOpen: () => void,
+  handleAddFood: ( 
+    data: {
+    name: string,
+    description: string,
+    price: number,
+  }) => void
+}
+
+class ModalAddFood extends Component <ModalAddFoodProps> {
+  constructor(props: ModalAddFoodProps) {
     super(props);
 
     this.formRef = createRef();

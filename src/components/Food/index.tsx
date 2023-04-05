@@ -11,7 +11,7 @@ interface FoodProps{
       description: string,
       price: number,
       available: boolean,
-      image: string
+      image: string,
     },
     handleEditFood(food: {}):[],
 
@@ -20,13 +20,13 @@ interface FoodProps{
 
 }
 
-class Food extends Component<FoodProps> {
+class Food extends Component<FoodProps, { isAvailable: boolean}> {
   constructor(props: FoodProps) {
     super(props);
 
     const { available } = this.props.food;
     this.state = {
-      isAvailable: available
+      isAvailable : available
     };
   }
 
