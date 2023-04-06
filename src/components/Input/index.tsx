@@ -11,13 +11,11 @@ import { Container } from './styles';
 
 interface InputProps {
   name: string,
-  icon?: React.ElementType<{size: number}>,
-  value?: string,
-  placeholder: string
+  icon?: React.ElementType<{size: number}>
 }
 
-const Input = ({ name, icon: Icon, ...rest }:InputProps) =>{
-  const inputRef = useRef(null);
+const Input = ({ name, icon: Icon, ...rest }:InputProps & React.InputHTMLAttributes<HTMLInputElement>) =>{
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
@@ -31,7 +29,7 @@ const Input = ({ name, icon: Icon, ...rest }:InputProps) =>{
   const handleInputBlur = useCallback(() =>{
     setIsFocused(false);
 
-    setIsFilled(!!inputRef.current?.['value']);
+    setIsFilled(!!inputRef.current?.value);
   }, []);
 
   useEffect(() => {
